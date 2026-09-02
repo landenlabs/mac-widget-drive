@@ -7,7 +7,10 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "MacWidgetDrive",
-            path: "Sources/MacWidgetDrive"
+            path: "Sources/MacWidgetDrive",
+            linkerSettings: [
+                .linkedFramework("ServiceManagement"),
+            ]
         )
     ]
 )

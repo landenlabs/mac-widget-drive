@@ -16,8 +16,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         TrafficScheduler.shared.start()
         setupStatusItem()
-
-        LoginItem.syncWithStoredPreference()
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { false }
