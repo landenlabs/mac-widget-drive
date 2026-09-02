@@ -55,10 +55,10 @@ struct RouteSettingsView: View {
                 Text("Route").font(.headline)
 
                 addressField(label: "Starting Address",
-                             prompt: "e.g. 330 Brookline Ave, Boston, MA",
+                             prompt: "e.g. 1 Infinite Loop, Cupertino, CA",
                              text: $originDraft)
                 addressField(label: "Ending Address",
-                             prompt: "e.g. 10 Hunters Run, Salem, NH",
+                             prompt: "e.g. 1600 Amphitheatre Parkway, Mountain View, CA",
                              text: $destinationDraft)
 
                 Button("Save Route") {

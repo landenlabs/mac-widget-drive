@@ -75,7 +75,7 @@ struct DesktopTrafficView: View {
     }
 
     /// Drops the street portion of each address (everything before the first
-    /// comma) so the header reads e.g. "Boston, MA \u{2192} Salem, NH" instead of
+    /// comma) so the header reads e.g. "Boston, MA \u{2192} Reading, PA" instead of
     /// the full street addresses, which won't fit in the widget's width.
     private static func routeLabel(from origin: String, to destination: String) -> String {
         "\(shortAddress(origin)) \u{2192} \(shortAddress(destination))"

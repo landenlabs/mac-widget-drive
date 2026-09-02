@@ -22,8 +22,8 @@ enum TrafficError: LocalizedError {
 final class TrafficService {
     static let shared = TrafficService()
 
-    static let defaultOriginAddress = "330 Brookline Ave, Boston, MA"
-    static let defaultDestinationAddress = "10 Hunters Run, Salem, NH"
+    static let defaultOriginAddress = "1 Infinite Loop, Cupertino, CA"
+    static let defaultDestinationAddress = "1600 Amphitheatre Parkway, Mountain View, CA"
 
     /// Opens Google Maps driving directions for the given route in the default browser.
     static func openDirectionsInMaps(origin: String, destination: String) {

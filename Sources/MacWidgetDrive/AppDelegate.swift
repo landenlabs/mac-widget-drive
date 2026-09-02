@@ -8,6 +8,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
+        setupMainMenu()
 
         let manager = DesktopWindowManager(appState: AppState.shared)
         manager.setup()
@@ -20,6 +21,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { false }
+
+    // MARK: - Main menu
+
+    /// Accessory (menu-bar-only) apps get no main menu by default, which means
+    /// there's no Edit menu to route Cmd-C/Cmd-V/Cmd-X/Cmd-A key equivalents to
+    /// the first responder — so those shortcuts silently do nothing in any
+    /// text field. A minimal Edit menu restores standard text editing.
+    private func setupMainMenu() {
+        let mainMenu = NSMenu()
+
+        let editMenuItem = NSMenuItem()
+        let editMenu = NSMenu(title: "Edit")
+        editMenu.addItem(withTitle: "Undo", action: Selector(("undo:")), keyEquivalent: "z")
+        editMenu.addItem(withTitle: "Redo", action: Selector(("redo:")), keyEquivalent: "Z")
+        editMenu.addItem(.separator())
+        editMenu.addItem(withTitle: "Cut", action: #selector(NSText.cut(_:)), keyEquivalent: "x")
+        editMenu.addItem(withTitle: "Copy", action: #selector(NSText.copy(_:)), keyEquivalent: "c")
+        editMenu.addItem(withTitle: "Paste", action: #selector(NSText.paste(_:)), keyEquivalent: "v")
+        editMenu.addItem(withTitle: "Select All", action: #selector(NSText.selectAll(_:)), keyEquivalent: "a")
+        editMenuItem.submenu = editMenu
+        mainMenu.addItem(editMenuItem)
+
+        NSApp.mainMenu = mainMenu
+    }
 
     // MARK: - Status item
 
