@@ -127,7 +127,7 @@ struct AboutView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Mac Widget Drive")
                             .font(.title.bold())
-                        Text("Version \(AppVersion)")
+                        Text("Version \(displayVersion)")
                             .foregroundColor(.secondary)
                     }
                 }
@@ -154,6 +154,10 @@ struct AboutView: View {
             .padding(20)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+    }
+
+    private var displayVersion: String {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? appVersion
     }
 
     private var buildDate: String {

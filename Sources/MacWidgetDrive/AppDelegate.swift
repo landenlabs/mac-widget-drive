@@ -141,6 +141,9 @@ extension AppDelegate: NSMenuDelegate {
 
         menu.addItem(.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+
+        menu.addItem(.separator())
+        menu.addItem(versionItem())
     }
 
     /// Bold, non-clickable title shown at the top of the menu.
@@ -149,6 +152,19 @@ extension AppDelegate: NSMenuDelegate {
         it.attributedTitle = NSAttributedString(
             string: title,
             attributes: [.font: NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)])
+        it.isEnabled = false
+        return it
+    }
+
+    /// Small, light, non-clickable version label shown at the bottom of the menu.
+    private func versionItem() -> NSMenuItem {
+        let v = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? appVersion
+        let text = "v\(v)"
+        let it = NSMenuItem(title: text, action: nil, keyEquivalent: "")
+        it.attributedTitle = NSAttributedString(
+            string: text,
+            attributes: [.font: NSFont.systemFont(ofSize: NSFont.smallSystemFontSize),
+                         .foregroundColor: NSColor.secondaryLabelColor])
         it.isEnabled = false
         return it
     }
