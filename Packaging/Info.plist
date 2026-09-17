@@ -4,6 +4,8 @@
 <dict>
     <key>CFBundleExecutable</key>
     <string>MacWidgetDrive</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
     <key>CFBundleIdentifier</key>
     <string>com.landenlabs.macwidgetdrive</string>
     <key>CFBundleName</key>
