@@ -1,5 +1,4 @@
 #!/bin/bash
-pkill -x MacWidgetDrive 2>/dev/null && sleep 0.5
-swift build -c release 2>&1 | grep -v "^$"
-.build/arm64-apple-macosx/release/MacWidgetDrive &
-disown
+# Builds, installs to /Applications as a real .app bundle, and launches it.
+# (A bare SwiftPM binary cannot be registered as a login item.)
+exec "$(dirname "$0")/build_app.sh"

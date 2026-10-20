@@ -137,6 +137,7 @@ extension AppDelegate: NSMenuDelegate {
 
         let loginItem = NSMenuItem(title: "Launch at Login", action: #selector(toggleLaunchAtLogin), keyEquivalent: "")
         loginItem.state = LoginItem.isEnabled ? .on : .off
+        loginItem.target = self
         menu.addItem(loginItem)
 
         menu.addItem(.separator())

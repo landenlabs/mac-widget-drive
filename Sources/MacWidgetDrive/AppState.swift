@@ -6,16 +6,15 @@ struct ScreenPosition: Codable, Equatable {
     var y: Double
 }
 
-/// Identifies the current set of physically-connected displays so the widget
-/// can remember a separate position for each monitor arrangement.
+/// Identifies the current display arrangement (size + global origin of each
+/// screen) so the widget remembers a separate position per arrangement.
+/// Not based on CGDirectDisplayID, which macOS may reassign across reconnects.
 enum ScreenFingerprint {
     static var current: String {
-        let key = NSDeviceDescriptionKey("NSScreenNumber")
-        let ids = NSScreen.screens
-            .compactMap { $0.deviceDescription[key] as? NSNumber }
-            .map { $0.uint32Value }
+        NSScreen.screens
+            .map { "\(Int($0.frame.width))x\(Int($0.frame.height))@\(Int($0.frame.origin.x)),\(Int($0.frame.origin.y))" }
             .sorted()
-        return ids.isEmpty ? "none" : ids.map(String.init).joined(separator: "|")
+            .joined(separator: "|")
     }
 }
 
